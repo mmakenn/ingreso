@@ -1,17 +1,20 @@
 from string import Template
 from random import randint
 
+ELEMENTS = 10
+AGE_RANGE = (0, 100)
 MESSAGE = Template("La persona con ID: ${id} es la más ${status}.")
 
 def generateListOfDicts():
     list = []
-    for i in range(10):
-        age = randint(0, 100)
+    for i in range(ELEMENTS):
+        age = randint(AGE_RANGE[0], AGE_RANGE[1])
         dic = {"id": i, "edad": age}
         list.append(dic)
     return list
 
 def compareAges(orderedList, age):
+    """ Funcion auxiliar """
     for i in range(len(orderedList)):
         ageFromOrderItem = orderedList[i]["edad"]
         if (age < ageFromOrderItem):
@@ -34,6 +37,3 @@ def orderMyListOfDicts(list):
     print(MESSAGE.substitute(id = olderId, status = "vieja"))
     
     return orderedList
-
-list = generateListOfDicts()
-orderMyListOfDicts(list)
